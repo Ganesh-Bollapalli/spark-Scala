@@ -1,0 +1,11 @@
+Spark Context:
+
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkConf
+val conf = new SparkConf().setAppName("gani")
+val sc = new SparkContext(conf)
+
+Spark Session:
+
+import org.apache.spark.sql.SparkSession
+val spark=SparkSession.builder.appName("gani").getOrCreate()

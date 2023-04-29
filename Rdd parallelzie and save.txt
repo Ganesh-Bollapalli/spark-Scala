@@ -1,0 +1,5 @@
+import org.apache.spark.sql.SparkSession
+val spark=SparkSession.builder.appName("gani").getOrCreate()
+var data=Array(1,2,3,4,5)
+val rdd = sc.parallelize(data)
+rdd.coalesce(1).saveAsTextFile('/projects/challenge/rdd')

@@ -1,0 +1,10 @@
+import org.apache.spark.sql.SparkSession
+val spark=SparkSession.builder.appName("gani").getOrCreate()
+val newrdd=sc.textFile("fresco.txt")                       ## in spark-shell give only filename not full path
+val wc = newrdd.flatMap(line => line.split(" ")).map( word =>(word, 1)).cache()
+val output = wc.reduceByKey((x,y) => x+y)
+output.coalesce(1).saveAsTextFile('WordCount')
+output.collect()
+output.first(2)
+output.foreach(println)
+output.coalesce(1).saveAsTextFile("Wordcount")

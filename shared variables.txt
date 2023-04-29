@@ -1,0 +1,13 @@
+import org.apache.spark.sql.SparkSession
+val spark=SparkSession.builder.appName("gani").getOrCreate()
+val broadcastVar = sc.broadcast(Array(1, 2, 3, 4))
+broadcastVar.value
+val accum = sc.longAccumulator("FrescoAccumulator")
+accum.value
+val data = Seq(1,2,3,4,5)
+data.foreach( x => accum.add(x))
+accum.value
+val accumlumatorVal = accum.value
+println(accumlumatorVal)
+val AccumulatorRdd=sc.parallelize(Seq(accumlumatorVal))
+AccumulatorRdd.coalesce(1).saveAsTextFile("Sum")
