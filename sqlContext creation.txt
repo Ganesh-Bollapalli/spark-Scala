@@ -1,5 +1,5 @@
 Sql Context: (unified in sparksession itself)
-****[In scala we can run sql quries only from slcontext.sql not spark.sql]****
+****[In scala we can run sql quries only from sqlcontext.sql not spark.sql]****
 
 val sqlContext = new org.apache.spark.sql.SQLContext(sc)    ## from sparkcontext object
 or
